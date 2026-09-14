@@ -11,8 +11,8 @@ window.runDiscoveryTests = () => {
   check('Reading the card freezes the complete game state',JSON.stringify(g.state)===before);
   check('The power is saved until continuing',g.state.slowRemaining===0&&g.state.players[0].score===0);
   document.getElementById('pause').click();
-  window.dispatchEvent(new KeyboardEvent('keydown',{key:' '}));
-  check('Pause and firing cannot bypass the discovery card',g.state.mode==='discovery'&&g.state.players[0].shots===0);
+  window.dispatchEvent(new KeyboardEvent('keydown',{key:' ',repeat:true}));
+  check('Pause and held firing cannot bypass the discovery card',g.state.mode==='discovery'&&g.state.players[0].shots===0);
   document.getElementById('discoveryContinue').click();
   check('Continue grants the full power duration and bonus once',g.state.mode==='playing'&&g.state.slowRemaining===10&&g.state.players[0].score===50);
   document.getElementById('discoveryContinue').click();
