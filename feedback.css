@@ -1,0 +1,42 @@
+/* Flock rewards and a consistent keyboard-first dialog family. */
+.character-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.character-choice.locked{opacity:.72;cursor:default;box-shadow:none}
+.character-choice.locked .portrait img{filter:saturate(.25);transform:none}
+.portrait{position:relative}.lock-badge{position:absolute;bottom:6px;right:6px;background:#203d40;color:#fff9e9;padding:3px 6px;border-radius:5px;font-size:9px;letter-spacing:1px}
+.flock-progress{margin:15px 0 4px;padding:12px;border:1px solid #d7b66c;border-radius:12px;background:#fff0c9;text-align:center}
+.flock-progress strong{display:block;font-size:13px}.flock-progress p{font-size:11px;line-height:1.5;margin:5px 0}
+#menuGift{border:2px solid #203d40;background:#edbd5c;color:#203d40;border-radius:8px;padding:8px 18px;font-weight:bold}
+#crumbStatus{position:fixed;z-index:7;left:22px;bottom:115px;padding:9px 12px;border:2px solid #203d40;border-radius:12px;background:#fff0c9eF;pointer-events:none;box-shadow:0 3px 0 #203d40}
+#crumbStatus strong,#crumbStatus small{display:block}#crumbStatus strong{font-size:12px}#crumbStatus small{font-size:10px;margin-top:4px}
+body:not([data-mode="playing"]) #crumbStatus{display:none}
+.flight-dialog{width:min(440px,92vw);max-height:92dvh;overflow:auto;border:3px solid #203d40;border-radius:24px;background:#fff9e9;color:#203d40;padding:26px;box-shadow:0 8px 0 #203d40,0 20px 80px #142e4655;text-align:center}
+.flight-dialog::backdrop{background:#102e4299;backdrop-filter:blur(5px)}
+.flight-dialog[open]{animation:results-arrive .3s ease-out both}
+.flight-dialog h2{font-size:32px;line-height:1.1;letter-spacing:-1px;margin:10px 0;outline:none}
+.flight-dialog p{font-size:14px;line-height:1.5}.flight-dialog .eyebrow{font-size:10px;letter-spacing:2px;font-weight:bold}
+.dialog-primary,.dialog-secondary{display:block;width:100%;border:2px solid #203d40;border-radius:12px;padding:13px 16px;font:inherit;font-size:16px;font-weight:bold;margin:12px 0 0}
+.dialog-primary{background:#203d40;color:#fff9e9;box-shadow:0 4px 0 #e4b24e}.dialog-primary:hover{background:#315559}
+.dialog-secondary{background:transparent;color:#9b3949;border-color:#d9b0b2}.dialog-secondary:hover{background:#fbe0de}
+.flight-dialog .keyboard-hint{font-size:11px;opacity:.7;margin:17px 0 0}
+.dialog-icon{font-size:42px;font-weight:bold;line-height:1;background:#dce9de;border-radius:50%;width:78px;height:78px;margin:0 auto 18px;display:grid;place-items:center}
+#resultsGift{background:#fff0c9;border-radius:10px;padding:10px;font-size:12px;margin:0 0 14px}
+#giftDialog{width:min(460px,92vw)}
+.gift-stage{position:relative;width:min(280px,100%);height:250px;margin:8px auto 20px;display:grid;place-items:center;isolation:isolate}
+.gift-halo{position:absolute;inset:0;background:radial-gradient(ellipse,#ffdf7e 0%,#ffdf7e00 68%);border-radius:50%;z-index:-1}
+.gift-box{position:relative;width:145px;height:125px;background:linear-gradient(110deg,#f27c86,#e85468);border:3px solid #203d40;border-radius:5px 5px 14px 14px;box-shadow:8px 10px 0 #203d4020;transform:rotate(-6deg);animation:gift-wiggle 2.2s ease-in-out infinite}
+.gift-box:before{content:"";position:absolute;inset:0 51px;background:#ffd479;border-inline:2px solid #203d40}
+.gift-lid{position:absolute;left:-10px;right:-10px;top:-18px;height:29px;border:3px solid #203d40;border-radius:6px;background:#f6979d;z-index:1}
+.gift-lid:before,.gift-lid:after{content:"";position:absolute;bottom:24px;left:50%;width:42px;height:28px;border:7px solid #e6b750;border-radius:70% 70% 0 70%;transform:translateX(-90%) rotate(15deg)}
+.gift-lid:after{transform:translateX(-10%) rotate(75deg)}
+#giftPortrait{display:none;width:230px;height:240px;object-fit:cover;border-radius:24px;border:3px solid #203d40;box-shadow:0 6px 0 #e4b24e}
+[data-stage="revealed"] .gift-box{position:absolute;pointer-events:none;animation:gift-open .65s ease-in both}[data-stage="revealed"] .gift-lid{animation:gift-lid-open .55s ease-out both}[data-stage="revealed"] #giftPortrait{display:block;animation:gift-reveal .6s .12s cubic-bezier(.2,.9,.2,1.2) both}
+[data-stage="revealed"] .gift-halo{background:repeating-conic-gradient(from 10deg,#ffe18a66 0deg 12deg,transparent 12deg 30deg);animation:gift-rays 12s linear infinite}
+[data-mode="confirmExit"] #frenzyIntro,[data-mode="confirmExit"] #frenzyBadge,[data-mode="confirmExit"] #hawkNotice,[data-mode="confirmExit"] #powerStatus,[data-mode="confirmExit"] #bombFeedback{visibility:hidden}
+@keyframes gift-wiggle{0%,75%,100%{transform:rotate(-6deg)}82%{transform:rotate(4deg) translateY(-4px)}90%{transform:rotate(-10deg)}}
+@keyframes gift-reveal{from{opacity:0;transform:translateY(35px) scale(.65) rotate(-12deg)}to{opacity:1;transform:none}}
+@keyframes gift-open{0%{opacity:1;transform:rotate(-6deg)}100%{opacity:0;transform:translateY(50px) scale(.6);visibility:hidden}}
+@keyframes gift-lid-open{to{transform:translateY(-110px) rotate(-25deg);opacity:0}}
+@keyframes gift-rays{to{transform:rotate(360deg)}}
+@media(max-width:600px){#crumbStatus{bottom:110px;left:10px;padding:7px 9px;max-width:65vw}#crumbStatus strong{font-size:11px}#crumbStatus small{font-size:9px}}
+@media(max-width:440px){.character-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.flight-dialog{padding:22px 18px}.flight-dialog h2{font-size:28px}.gift-stage{height:210px}#giftPortrait{height:205px;width:205px}}
+@media(prefers-reduced-motion:reduce){.flight-dialog[open],.gift-box,[data-stage="revealed"] #giftPortrait,[data-stage="revealed"] .gift-halo{animation:none}[data-stage="revealed"] .gift-box{display:none}}

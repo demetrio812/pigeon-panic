@@ -2,7 +2,7 @@ window.runDiscoveryTests = () => {
   const g=window.pigeonGame, results=[];
   const check=(name,ok)=>{if(!ok)throw new Error(name);results.push(name)};
   check('Discovery reset fixture is available',typeof g.resetDiscoveries==='function');
-  g.resetDiscoveries();
+  g.resetFlock();g.resetDiscoveries();
   const start=()=>{document.getElementById('play').click();g.step(3.61,0);g.quietPickups()};
   const collect=(kind,x=0)=>{g.spawnPickup(kind,x,13);g.step(0,0)};
   start();collect('slow');
@@ -28,7 +28,8 @@ window.runDiscoveryTests = () => {
   document.getElementById('discoveryContinue').click();
   check('Bomb detonates on continue',g.state.targets[0].hit&&g.state.players[0].score===100);
   start();collect('super');
-  check('A new round remembers previously seen powers',g.state.mode==='playing');
+  check('A re-enabled tutorial introduces powers again each round',g.state.mode==='discovery');
+  document.getElementById('discoveryContinue').click();
   g.resetDiscoveries();document.querySelector('[data-players="2"]').click();start();collect('super',3);
   check('Two-player card identifies the collecting player',g.state.mode==='discovery'&&document.getElementById('discoveryOwner').textContent.includes('P2'));
   document.getElementById('discoveryContinue').click();
