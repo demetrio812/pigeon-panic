@@ -1,0 +1,13 @@
+.share-panel{margin:18px 0;padding:16px;border:2px solid #d8b364;border-radius:14px;background:#fff0c9;text-align:left}
+.share-eyebrow{font-size:10px;letter-spacing:1.6px;font-weight:900;margin:0 0 8px}
+#shareHeadline{font-size:18px;line-height:1.4;margin:0 0 12px;color:#203d40}
+.share-actions{display:flex;gap:8px;flex-wrap:wrap}.share-actions button,.clip-actions button,.clip-actions a{border:2px solid #203d40;border-radius:9px;padding:10px 12px;background:#fff9e9;color:#203d40;font:inherit;font-size:12px;font-weight:bold;text-decoration:none;cursor:pointer}
+.share-actions #shareScore{background:#203d40;color:#fff9e9;flex:1}.share-actions button:disabled,.clip-actions button:disabled{opacity:.6;cursor:wait}
+#shareStatus,#clipSupport{font-size:11px;line-height:1.5;margin:10px 0 0}#shareStatus{min-height:17px}
+#manualShare label{display:block;font-size:11px;font-weight:bold;margin:12px 0 6px}#challengeText{box-sizing:border-box;width:100%;min-height:100px;border:1px solid #203d40;border-radius:8px;padding:10px;background:#fff9e9;color:#203d40;font:13px/1.5 system-ui;resize:vertical}
+.clip-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.clip-section{border-top:1px solid #203d4033;margin-top:16px;padding-top:12px}.clip-section>summary{font-size:12px;font-weight:bold;cursor:pointer;padding:5px 0}
+#clipReady{margin-top:12px}#clipPreview{display:block;width:100%;max-height:260px;border-radius:10px;background:#203d40}#saveClip{display:inline-block;margin-top:8px}
+.utility #recordClip{position:absolute;right:0;bottom:48px;width:auto;height:34px;border-radius:9px;padding:0 10px;font-size:12px;white-space:nowrap}body:not([data-mode="playing"]) #recordClip{display:none}#recordClip[aria-pressed="true"]{background:#eb5966;color:#fff9e9}
+#clipNotice{position:fixed;z-index:15;bottom:16px;left:50%;transform:translateX(-50%);padding:7px 12px;border-radius:9px;background:#203d40;color:#fff9e9;font-size:11px;max-width:80vw;text-align:center;pointer-events:none}
+[hidden]{display:none!important}
+@media(max-width:600px){.share-panel{padding:12px}#shareHeadline{font-size:16px}.share-actions{gap:6px}.share-actions #shareScore{flex-basis:100%}.share-actions button{flex:1}.utility #recordClip{font-size:11px}#clipNotice{bottom:100px}}

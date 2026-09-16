@@ -54,3 +54,24 @@ Breadcrumbs and flock gifts:
 - Gifts wait until after results, or can be opened from the menu after a reload. Open gift animates the lid and reveals the character. Enter/Space handle both steps. Unlocks and crumb totals are saved in this browser, shared by local players, with an in-memory fallback if storage is unavailable.
 - Two-player mode credits crumbs to the collecting player and shares lifetime gift progress. Each collectible scores only once. Round results include each player's breadcrumb count.
 - Run `runFlockTests()` from `tests/flock.js` on a fresh `?test=1` page for 37 keyboard, tutorial, early-finish, collection, and unlock checks. Test helpers can reset the test browser's flock progression.
+
+
+Sharing:
+
+- Results include a Challenge a friend action with a score message and the canonical public play URL. It opens the native share sheet when supported; otherwise it copies the full challenge. Cancellation stays on the results without copying. Clipboard failures expose selectable text. No message is sent automatically.
+- Solo and two-player messages use the completed round's scores; early finishes are labelled as early flights. Saving a score image exports a 1080px PNG with character portraits, scores, accuracy and the public play URL.
+- Press R or Record while flying to record the next ten active seconds, or open Save a ridiculous moment on the results card to record the victory animation. Recording is opt-in, silent, capped at 720px/24fps, and uses only the game canvas with score and play-link overlays. It never requests camera, microphone or screen access. No clip history is captured in the background.
+- Pauses, power cards, exit confirmation and background tabs suspend recording. An active recording can continue into the victory animation after the round. Clips stay in memory and can be previewed/downloaded from results; save before starting another round, recording a replacement, or reloading. Browsers without MediaRecorder/canvas capture retain score sharing and image export.
+- MP4/H.264 is preferred when supported, with WebM and browser-native format fallbacks. No video is uploaded automatically.
+- Link preview metadata uses the existing Crumbs portrait and the public URL.
+- Run `runSharingTests()` from `tests/sharing.js` for 15 share/fallback/score checks. `runClipTests()` from `tests/clips.js` exercises the real browser recorder for 11 checks, including a ten-second recording and playback. Use a fresh `?test=1` page per suite.
+
+
+Controllers:
+
+- Pair a Bluetooth controller in the device's system settings, or connect by USB. Focus the game and press a button to reveal it to the browser; release and press again to act. Uses the standard browser Gamepad mapping, without Web Bluetooth or pairing permissions. Unmapped controllers and unavailable API access show a keyboard/touch fallback message.
+- Left stick gives proportional steering with a 20% deadzone; the D-pad gives full left/right steering. A / Cross (bottom face button) drops once per press or activates the highlighted menu item. Start / Options pauses/resumes, B / Circle backs out safely or opens the end-flight dialog, and Y / Triangle toggles sound.
+- In menus, stick/D-pad steps through visible controls. Left/right adjusts Road speed; A selects characters, toggles options, starts a flight and dismisses power/results/gift cards. A held steering direction must return to neutral before navigating a newly opened modal.
+- First connected standard controller is P1, second is P2. Two-player mode supports two controllers or mixed keyboard/controller input. A disconnect pauses active play, clears movement and retains the other player's assignment; reconnecting fills the vacant slot. Backgrounding pauses and prevents held buttons from dismissing a dialog on return.
+- Browser/OS/controller compatibility varies. Some browser features, including audio unlock and native sharing, may still need an initial click/key press. No physical controller was available for this implementation's verification.
+- Run `runControllerTests()` from `tests/controllers.js` on a fresh `?test=1` page. It injects standard gamepad snapshots into the real controller loop to check analog input, buttons, menus, multiplayer and disconnects; existing keyboard/touch controls remain available.
