@@ -1,0 +1,28 @@
+window.runRapidTests=()=>{
+ const g=pigeonGame,$=id=>document.getElementById(id),checks=[];
+ const check=(name,ok)=>{if(!ok)throw Error(name);checks.push(name)};
+ const step=t=>{for(let left=t;left>1e-8;left-=1/120)g.step(Math.min(left,1/120),0)};
+ const start=(count=1)=>{document.querySelector('.modes [data-players="'+count+'"]').click();$('play').click();g.step(3.61,0);g.skipDiscoveries();g.quietPickups()};
+ const collect=(kind,i=0)=>{g.spawnPickup(kind,g.state.players[i].x,13);g.step(0,0)};
+ const key=k=>{window.dispatchEvent(new KeyboardEvent('keydown',{key:k,cancelable:true}));window.dispatchEvent(new KeyboardEvent('keyup',{key:k}))};
+ g.resetFlock();start();g.resetDiscoveries();collect('rapid');
+ check('Splat Storm gets its own discovery card',g.state.mode==='discovery'&&g.state.discovery==='rapid'&&$('discoveryTitle').textContent==='Splat Storm');
+ check('Reading the card does not use its duration',g.state.players[0].rapidRemaining===0);g.step(5,0);
+ key('Enter');check('Continue grants ten full seconds and 50 pickup points',g.state.players[0].rapidRemaining===10&&g.state.players[0].score===50&&g.state.players[0].shots===0);
+ step(1);check('Automatically fires twelve drops in one second',g.state.players[0].shots===12);
+ check('Rapid power has a visible timer and auto-fire label',$('powerStatus').textContent.includes('Splat Storm')&&$('ready').textContent.includes('auto'));
+ key('p');const paused=g.state.players[0];g.step(3,0);check('Pause freezes automatic fire and duration',g.state.players[0].shots===paused.shots&&g.state.players[0].rapidRemaining===paused.rapidRemaining);key('p');
+ step(9.01);check('Rapid fire expires after ten active seconds',g.state.players[0].rapidRemaining===0&&g.state.players[0].shots===120);
+ const stopped=g.state.players[0].shots;step(.5);check('No automatic shots after expiry',g.state.players[0].shots===stopped);
+ start();collect('slow');collect('rapid');step(1);check('Slow motion does not reduce fire rate',g.state.players[0].shots===12&&g.state.worldScale===.45);
+ collect('rapid');check('A repeat pickup refreshes rather than stacks',g.state.players[0].rapidRemaining===10);
+ start();g.setupTarget('Car',3,13-30*.24);g.quietPickups();collect('super');collect('rapid');step(.26);
+ check('Automatic shots combine with Super splat',g.state.targets[0].hit&&g.state.players[0].hits>=1);
+ check('Accuracy remains based on real drops',g.state.players[0].hits<=g.state.players[0].shots);
+ collect('bomb');check('Bomb works during rapid fire without cancelling it',g.state.players[0].rapidRemaining>9);
+ start(2);collect('rapid',1);step(1);check('Only the collecting player auto-fires',g.state.players[0].shots===0&&g.state.players[1].shots===12);
+ key('Escape');const shots=g.state.players[1].shots;g.step(1,0);check('Exit confirmation freezes rapid fire',g.state.players[1].shots===shots);key('Enter');
+ $('play').click();g.step(3.61,0);g.quietPickups();check('New round clears rapid fire for both players',g.state.players.every(p=>p.rapidRemaining===0&&p.shots===0));
+ start();step(59);collect('rapid');step(1.01);check('Round end clears rapid fire without extending the round',g.state.mode==='over'&&g.state.time===0&&g.state.players[0].rapidRemaining===0);
+ return checks;
+};

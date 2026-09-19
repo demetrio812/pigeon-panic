@@ -8,7 +8,7 @@ window.runFlockTests=()=>{
  const crumb=(i=0)=>{g.spawnCrumb(g.state.players[i].x,13);g.step(0,0)};
  g.resetFlock();check('First-game power cards default on',$('showPowerCards').checked);
  check('Four original characters stay selectable',document.querySelectorAll('#character0 button:not(:disabled)').length===4);
- check('Two gift characters start locked',document.querySelectorAll('#character0 button:disabled').length===2);
+ check('Two crumb gifts and three guest gifts start locked',document.querySelectorAll('#character0 button:disabled').length===5);
  key('s');check('S enables sound',g.state.sound);key('s',true);check('Held S does not retoggle',g.state.sound);key('s');check('S disables sound',!g.state.sound);
  $('play').click();key('Escape');const countdownTime=g.state.time;g.step(4,0);
  check('Escape freezes countdown for exit confirmation',g.state.mode==='confirmExit'&&g.state.time===countdownTime&&$('exitDialog').open);
@@ -46,7 +46,7 @@ window.runFlockTests=()=>{
  for(let i=0;i<34;i++)crumb(1);check('Sixty lifetime crumbs earn the second gift',g.state.flock.crumbs===60&&g.state.flock.gifts.join()==='Pebble');
  key('Escape');$('endFlight').click();key('Enter');key('Enter');
  check('Second gift unlocks Pebble without duplicating Sunny',g.state.flock.unlocked.join()==='Sunny,Pebble');key('Enter');
- check('Full flock is available to both players',document.querySelectorAll('#character0 button:disabled,#character1 button:disabled').length===0);
+ check('All six original pigeons are available to both players',[...document.querySelectorAll('#character0 button,#character1 button')].filter(b=>+b.dataset.character<6).every(b=>!b.disabled));
  // Full sixty-second completion also disables a manually re-enabled tutorial.
  $('showPowerCards').checked=true;start();g.quietPickups();advance(60.05);
  check('Natural round end uses the same results and tutorial preference',g.state.mode==='over'&&!$('showPowerCards').checked&&!g.state.flock.gifts.length);
