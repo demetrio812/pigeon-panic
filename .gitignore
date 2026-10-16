@@ -1,0 +1,40 @@
+# Local secrets and credentials (keep safe example configuration shareable).
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+.aws/
+.ssh/
+
+# Local dependencies and caches.
+node_modules/
+.cache/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor and operating-system files.
+.DS_Store
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local test output and temporary files.
+.playwright-mcp/
+playwright-report/
+test-results/
+coverage/
+*.log
+*.tmp
+tmp/
+
+# dist/ is intentionally tracked for static deployment.

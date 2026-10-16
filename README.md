@@ -1,5 +1,10 @@
 # Pigeon Panic: Express Mess
 
+Licensed under the [MIT License](LICENSE). Bundled Three.js retains its own
+[MIT license and copyright notice](vendor/THREE-LICENSE.txt). Character and
+power-up artwork was generated with AI; the artwork documents in this repository
+record its provenance and prompts.
+
 Version 3 was published on 14 September 2026 at https://pigeon-panic-express.novaware.chatgpt.site, including final frenzy, close shaves, and clear results. The latest release adds keyboard dialogs, optional tutorials, breadcrumb trails, and character gifts.
 
 The game includes animated pigeon heads and tails, victory celebrations, target reactions and splash particles, striped shop awnings, drains, crossings, and parked bikes. The HUD separates player colours around a centred timer and hides the control reminder after six seconds. One aiming ring per pigeon turns green when it is time to drop. Steering accelerates and brakes smoothly; traffic and effects reuse pooled objects.
