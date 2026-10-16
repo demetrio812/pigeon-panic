@@ -1,5 +1,27 @@
 # Pigeon Panic: Express Mess
 
+[Play in your browser](https://pigeon-panic-express.novaware.chatgpt.site/) — a
+60-second arcade flight for one or two birds. Dodge hawks, collect breadcrumbs,
+and make a spectacular mess.
+
+## Screenshots
+
+**Market Street** — weave through city traffic and dodge incoming hawks.
+
+![Crumbs flying over Market Street, with cars, bicycles, and an incoming hawk warning](docs/screenshots/market-street.jpg)
+
+**Penguin Ice Run** — an exclusive snowy route with snowcats, sleds, and explorers.
+
+![Penguin flying along an icy road surrounded by snow-covered scenery](docs/screenshots/penguin-ice-run.jpg)
+
+**Meet the guests** — unlock Dove, Seagull, and Penguin as your lifetime points grow.
+
+![Character selection cards for Dove, Seagull, and Penguin](docs/screenshots/guest-characters.jpg)
+
+Screenshots captured from the local preview with characters and routes unlocked.
+
+## About the game
+
 Licensed under the [MIT License](LICENSE). Bundled Three.js retains its own
 [MIT license and copyright notice](vendor/THREE-LICENSE.txt). Character and
 power-up artwork was generated with AI; the artwork documents in this repository
